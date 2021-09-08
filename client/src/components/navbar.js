@@ -26,11 +26,12 @@ const Navbar = () => {
  
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ml-auto">
-            <li className="nav-item">
               <NavLink className="nav-link" to="/create">
                     Add Translation
               </NavLink>
-            </li>
+              <NavLink className="nav-link" to="/database">
+                    All Translations
+              </NavLink>
           </ul>
         </div>
       </nav>
