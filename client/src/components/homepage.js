@@ -6,14 +6,15 @@ import { Link } from "react-router-dom";
  
 const Record = (props) => (
   <tr>
-    <td>{props.record.word}</td>
-    <td>{props.record.word_translation}</td>
+    <td>{props.record.person_name}</td>
+    <td>{props.record.person_position}</td>
+    <td>{props.record.person_level}</td>
     <td>
       <Link to={"/edit/" + props.record._id}>Edit</Link> |
       <a
         href="/"
         onClick={() => {
-          props.deleteTranslation(props.record._id);
+          props.deleteRecord(props.record._id);
         }}
       >
         Delete
@@ -22,11 +23,11 @@ const Record = (props) => (
   </tr>
 );
  
-export default class RecordList extends Component {
+export default class HomePage extends Component {
   // This is the constructor that shall store our data retrieved from the database
   constructor(props) {
     super(props);
-    this.deleteTranslation = this.deleteTranslation.bind(this);
+    this.deleteRecord = this.deleteRecord.bind(this);
     this.state = { records: [] };
   }
  
@@ -43,7 +44,7 @@ export default class RecordList extends Component {
   }
  
   // This method will delete a record based on the method
-  deleteTranslation(id) {
+  deleteRecord(id) {
     axios.delete("http://localhost:5000/" + id).then((response) => {
       console.log(response.data);
     });
@@ -59,7 +60,7 @@ export default class RecordList extends Component {
       return (
         <Record
           record={currentrecord}
-          deleteTranslation={this.deleteTranslation}
+          deleteRecord={this.deleteRecord}
           key={currentrecord._id}
         />
       );
@@ -72,18 +73,13 @@ export default class RecordList extends Component {
       <div>
         <h3>Words and Translations</h3>
         <table className="table table-striped" style={{ marginTop: 20 }}>
-          <thead>
             <tr>
               <th>Word</th>
               <th>Translation</th>
               <th>Action</th>
             </tr>
-          </thead>
-          <tbody>{this.recordList()}</tbody>
         </table>
       </div>
     );
   }
 }
- 
- 
