@@ -8,15 +8,13 @@ class Edit extends Component {
   constructor(props) {
     super(props);
  
-    this.onChangePersonName = this.onChangePersonName.bind(this);
-    this.onChangePersonPosition = this.onChangePersonPosition.bind(this);
-    this.onChangePersonLevel = this.onChangePersonLevel.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeWord = this.onChangeWord.bind(this);
+    this.onChangeWordTranslation = this.onChangeWordTranslation.bind(this);
+   this.onSubmit = this.onSubmit.bind(this);
  
     this.state = {
-      person_name: "",
-      person_position: "",
-      person_level: "",
+      word: "",
+      word_translation: "",
       records: [],
     };
   }
@@ -37,21 +35,15 @@ class Edit extends Component {
   }
  
   // These methods will update the state properties.
-  onChangePersonName(e) {
+  onChangeWord(e) {
     this.setState({
-      person_name: e.target.value,
+      word: e.target.value,
     });
   }
  
-  onChangePersonPosition(e) {
+  onChangeWordTranslation(e) {
     this.setState({
-      person_position: e.target.value,
-    });
-  }
- 
-  onChangePersonLevel(e) {
-    this.setState({
-      person_level: e.target.value,
+      word_translation: e.target.value,
     });
   }
  
@@ -59,9 +51,8 @@ class Edit extends Component {
   onSubmit(e) {
     e.preventDefault();
     const newEditedperson = {
-      person_name: this.state.person_name,
-      person_position: this.state.person_position,
-      person_level: this.state.person_level,
+      word: this.state.word,
+      word_translation: this.state.word_translation,
     };
     console.log(newEditedperson);
  
@@ -80,70 +71,31 @@ class Edit extends Component {
   render() {
     return (
       <div>
-        <h3 align="center">Update Record</h3>
+        <h3 align="center">Update Translation</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Person's Name: </label>
+            <label>Word: </label>
             <input
               type="text"
               className="form-control"
-              value={this.state.person_name}
-              onChange={this.onChangePersonName}
+              value={this.state.word}
+              onChange={this.onChangeWord}
             />
           </div>
           <div className="form-group">
-            <label>Position: </label>
+            <label>Word Translation: </label>
             <input
               type="text"
               className="form-control"
-              value={this.state.person_position}
-              onChange={this.onChangePersonPosition}
+              value={this.state.word_translation}
+              onChange={this.onChangeWordTranslation}
             />
           </div>
-          <div className="form-group">
-            <div className="form-check form-check-inline">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="priorityOptions"
-                id="priorityLow"
-                value="Intern"
-                checked={this.state.person_level === "Intern"}
-                onChange={this.onChangePersonLevel}
-              />
-              <label className="form-check-label">Intern</label>
-            </div>
-            <div className="form-check form-check-inline">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="priorityOptions"
-                id="priorityMedium"
-                value="Junior"
-                checked={this.state.person_level === "Junior"}
-                onChange={this.onChangePersonLevel}
-              />
-              <label className="form-check-label">Junior</label>
-            </div>
-            <div className="form-check form-check-inline">
-              <input
-                className="form-check-input"
-                type="radio"
-                name="priorityOptions"
-                id="priorityHigh"
-                value="Senior"
-                checked={this.state.person_level === "Senior"}
-                onChange={this.onChangePersonLevel}
-              />
-              <label className="form-check-label">Senior</label>
-            </div>
-          </div>
-          <br />
  
           <div className="form-group">
             <input
               type="submit"
-              value="Update Record"
+              value="Update Translation"
               className="btn btn-primary"
             />
           </div>

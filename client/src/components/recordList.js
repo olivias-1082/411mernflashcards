@@ -71,13 +71,12 @@ export default class RecordList extends Component {
   render() {
     return (
       <div>
-        <h3>Record List</h3>
+        <h3>Words and Translations</h3>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Level</th>
+              <th>Word</th>
+              <th>Translation</th>
               <th>Action</th>
             </tr>
           </thead>
