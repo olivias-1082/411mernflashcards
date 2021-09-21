@@ -20,13 +20,24 @@ recordRoutes.route("/record").get(function (req, res) {
     });
 });
 
+// This section will help you get a single record by id
+recordRoutes.route("/record/:id").get(function (req, res) {
+  let db_connect = dbo.getDb("employees");
+  let myquery = { id: req.body.id };
+  db_connect
+      .collection("records")
+      .findOne(myquery, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      });
+});
+
 // This section will help you create a new record.
 recordRoutes.route("/record/add").post(function (req, res) {
   let db_connect = dbo.getDb("employees");
   let myobj = {
-    person_name: req.body.person_name,
-    person_position: req.body.person_position,
-    person_level: req.body.person_level,
+    word: req.body.word,
+    word_translation: req.body.word_translation,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
     if (err) throw err;
@@ -39,9 +50,8 @@ recordRoutes.route("/update/:id").post(function (req, res) {
   let myquery = { id: req.body.id };
   let newvalues = {
     $set: {
-      person_name: req.body.person_name,
-      person_position: req.body.person_position,
-      person_level: req.body.person_level,
+      word: req.body.word,
+      word_translation: req.body.word_translation,
     },
   };
   db_connect
