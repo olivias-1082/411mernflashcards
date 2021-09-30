@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // This will require to npm install axios
 import axios from 'axios';
 import { Link } from "react-router-dom";
- 
+ import './recordList.css';
 const Record = (props) => (
   <tr>
     <td>{props.record.word}</td>
@@ -68,9 +68,12 @@ export default class RecordList extends Component {
   // This following section will display the table with the records of individuals.
   render() {
     return (
+
       <div>
-        <h3>Words and Translations</h3>
-        <table className="table table-striped" style={{ marginTop: 20 }}>
+        <div class="w3-container">
+
+        <h3 align="center">Words and Translations</h3>
+        <table className="table table-striped" style={{ marginTop: 10 }}>
           <thead>
             <tr>
               <th>Word</th>
@@ -80,8 +83,8 @@ export default class RecordList extends Component {
           </thead>
           <tbody>{this.recordList()}</tbody>
         </table>
+        </div>
       </div>
     );
   }
 }
- 

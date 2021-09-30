@@ -16,7 +16,7 @@ const App = () => {
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route path="/database"> 
+      <Route path="/translations"> 
       <RecordList/>
       </Route>
       <Route path="/edit/:id" component={Edit} />

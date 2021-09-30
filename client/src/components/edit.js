@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import { withRouter } from "react-router";
- 
+import './edit.css'
 class Edit extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +63,8 @@ class Edit extends Component {
  
   render() {
     return (
+      <div class="w3-container">
+
       <div>
         <h3 align="center">Update Translation</h3>
         <form onSubmit={this.onSubmit}>
@@ -84,7 +86,7 @@ class Edit extends Component {
               onChange={this.onChangeWordTranslation}
             />
           </div>
- 
+          <div className="addbutton">
           <div className="form-group">
             <input
               type="submit"
@@ -92,8 +94,12 @@ class Edit extends Component {
               className="btn btn-primary"
             />
           </div>
+          </div>
+
         </form>
       </div>
+      </div>
+
     );
   }
 }

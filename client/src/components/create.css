@@ -1,0 +1,19 @@
+.w3-container {
+    background-color: rgb(159, 229, 241);
+    color: rgb(0, 0, 0);
+    border: 2px solid black;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 12%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    
+
+align-content: center;
+    padding: 40px;
+    border-radius: 30px;
+  }
+  .addbutton{
+    padding-top: 20px;
+
+  }

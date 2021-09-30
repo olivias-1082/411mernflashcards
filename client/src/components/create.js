@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 // This will require to npm install axios
 import axios from 'axios';
- 
+import './create.css'
+
 export default class Create extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +14,7 @@ export default class Create extends Component {
     this.state = {
       word: "",
       word_translation: "",
-   
+
     };
   }
  
@@ -50,8 +51,9 @@ export default class Create extends Component {
  
   render() {
     return (
+<div class="w3-container">
       <div style={{ marginTop: 20 }}>
-        <h3>Create New Translation</h3>
+        <h3 align="center">Create New Translation</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Word: </label>
@@ -71,6 +73,7 @@ export default class Create extends Component {
               onChange={this.onChangeWordTranslation}
             />
           </div>
+          <div className="addbutton">
           <div className="form-group">
             <input
               type="submit"
@@ -78,8 +81,10 @@ export default class Create extends Component {
               className="btn btn-primary"
             />
           </div>
+          </div>
         </form>
       </div>
+</div>
     );
   }
 }

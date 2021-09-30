@@ -1,5 +1,6 @@
 
 import React, { Component } from "react";
+import './homepage.css'
 
  
 export default class HomePage extends Component {
@@ -7,12 +8,13 @@ export default class HomePage extends Component {
   // This following section will display the table with the records of individuals.
   render() {
     return (
-      <div>
+<body>
+
+<h2>Background Image</h2>
+
+</body>
 
 
-        <h3>This is the home page</h3>
-
-      </div>
     );
   }
 }

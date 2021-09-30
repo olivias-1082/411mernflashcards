@@ -1,14 +1,14 @@
 // We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
- 
+ import './navbar.css';
 // We import NavLink to utilize the react router.
 import { NavLink } from "react-router-dom";
  
 // Here, we display our Navbar
 const Navbar = () => {
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <div className = "nav">
+      <nav className="navbar navbar-expand-lg">
         <NavLink className="navbar-brand" to="/">
           Translation App
         </NavLink>
@@ -29,7 +29,7 @@ const Navbar = () => {
               <NavLink className="nav-link" to="/create">
                     Add Translation
               </NavLink>
-              <NavLink className="nav-link" to="/database">
+              <NavLink className="nav-link" to="/translations">
                     All Translations
               </NavLink>
           </ul>
