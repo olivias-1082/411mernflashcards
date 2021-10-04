@@ -29,9 +29,16 @@ const Navbar = () => {
               <NavLink className="nav-link" to="/create">
                     Add Translation
               </NavLink>
+              <NavLink className="nav-link" to="/flashcardset">
+                    Flashcards
+              </NavLink>
+              <NavLink className="nav-link" to="/quiz">
+              Quiz
+              </NavLink>
               <NavLink className="nav-link" to="/translations">
                     All Translations
               </NavLink>
+
           </ul>
         </div>
       </nav>

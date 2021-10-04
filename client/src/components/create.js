@@ -8,25 +8,21 @@ export default class Create extends Component {
     super(props);
  
     this.onChangeWord = this.onChangeWord.bind(this);
-    this.onChangeWordTranslation = this.onChangeWordTranslation.bind(this);
+
     this.onSubmit = this.onSubmit.bind(this);
  
     this.state = {
       word: "",
-      word_translation: "",
 
     };
   }
  
+ 
+
+
   onChangeWord(e) {
     this.setState({
       word: e.target.value,
-    });
-  }
- 
-  onChangeWordTranslation(e) {
-    this.setState({
-      word_translation: e.target.value,
     });
   }
 
@@ -36,13 +32,15 @@ export default class Create extends Component {
  
     const newword = {
       word: this.state.word,
-      word_translation: this.state.word_translation,
+      
     };
  
-    axios
+
+      axios
       .post("http://localhost:5000/record/add", newword)
       .then((res) => console.log(res.data));
- 
+
+      
     this.setState({
       word: "",
       word_translation: "",

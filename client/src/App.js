@@ -9,6 +9,9 @@ import Edit from "./components/edit";
 import Create from "./components/create";
 import RecordList from "./components/recordList";
 import HomePage from "./components/homepage"
+import FlashcardSet from "./components/flashcards"
+import Quiz from "./components/quiz"
+
 const App = () => {
   return (
     <div>
@@ -22,6 +25,12 @@ const App = () => {
       <Route path="/edit/:id" component={Edit} />
       <Route path="/create">
         <Create />
+      </Route>
+      <Route path="/flashcardset"> 
+      <FlashcardSet/>
+      </Route>
+      <Route path="/quiz"> 
+      <Quiz/>
       </Route>
     </div>
   );

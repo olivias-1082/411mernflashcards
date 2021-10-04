@@ -10,7 +10,7 @@ export default class HomePage extends Component {
     return (
 <body>
 
-<h2>Background Image</h2>
+<h2>This will be the home page</h2>
 
 </body>
 
