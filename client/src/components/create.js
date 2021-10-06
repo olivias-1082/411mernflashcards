@@ -13,16 +13,19 @@ export default class Create extends Component {
  
     this.state = {
       word: "",
+      word_translation: "",
 
     };
   }
  
- 
-
-
   onChangeWord(e) {
     this.setState({
       word: e.target.value,
+    });
+  }
+  onChangeWordTranslation(e) {
+    this.setState({
+      word_translation: e.target.value,
     });
   }
 
@@ -32,15 +35,12 @@ export default class Create extends Component {
  
     const newword = {
       word: this.state.word,
-      
+      word_translation: this.state.word_translation,    
     };
- 
-
       axios
       .post("http://localhost:5000/record/add", newword)
       .then((res) => console.log(res.data));
 
-      
     this.setState({
       word: "",
       word_translation: "",
