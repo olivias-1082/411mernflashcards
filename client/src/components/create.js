@@ -1,20 +1,19 @@
 import React, { Component } from "react";
 // This will require to npm install axios
 import axios from 'axios';
-import './create.css'
-
+ 
 export default class Create extends Component {
   constructor(props) {
     super(props);
  
     this.onChangeWord = this.onChangeWord.bind(this);
-
+    this.onChangeWordTranslation = this.onChangeWordTranslation.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
  
     this.state = {
       word: "",
       word_translation: "",
-
+   
     };
   }
  
@@ -23,6 +22,7 @@ export default class Create extends Component {
       word: e.target.value,
     });
   }
+ 
   onChangeWordTranslation(e) {
     this.setState({
       word_translation: e.target.value,
@@ -35,12 +35,13 @@ export default class Create extends Component {
  
     const newword = {
       word: this.state.word,
-      word_translation: this.state.word_translation,    
+      word_translation: this.state.word_translation,
     };
-      axios
+ 
+    axios
       .post("http://localhost:5000/record/add", newword)
       .then((res) => console.log(res.data));
-
+ 
     this.setState({
       word: "",
       word_translation: "",
@@ -49,9 +50,10 @@ export default class Create extends Component {
  
   render() {
     return (
-<div class="w3-container">
+      <div class="w3-container">
+
       <div style={{ marginTop: 20 }}>
-        <h3 align="center">Create New Translation</h3>
+        <h3>Create New Translation</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Word: </label>
@@ -71,7 +73,6 @@ export default class Create extends Component {
               onChange={this.onChangeWordTranslation}
             />
           </div>
-          <div className="addbutton">
           <div className="form-group">
             <input
               type="submit"
@@ -79,10 +80,9 @@ export default class Create extends Component {
               className="btn btn-primary"
             />
           </div>
-          </div>
         </form>
       </div>
-</div>
+      </div>
     );
   }
 }
