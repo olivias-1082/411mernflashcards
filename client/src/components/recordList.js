@@ -73,7 +73,7 @@ export default class RecordList extends Component {
         <div class="w3-container">
 
         <h3 align="center">Words and Translations</h3>
-        <table className="table table-striped" style={{ marginTop: 10 }}>
+        <table className="table table-striped" style={{ marginTop: 5 }}>
           <thead>
             <tr>
               <th>Word</th>

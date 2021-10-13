@@ -5,11 +5,12 @@ import { Route } from "react-router-dom";
 
 // We import all the components we need in our app
 import Navbar from "./components/navbar";
-import Edit from "./components/edit";
-import Create from "./components/create";
+import UpdateFlashcard from "./components/flashcards/edit";
+import AddFlashcard from './components/flashcards/create';
+import Flashcards from './components/flashcards/flashcards';
+
 import RecordList from "./components/recordList";
 import HomePage from "./components/homepage"
-import FlashcardSet from "./components/flashcards"
 import Quiz from "./components/quiz"
 
 const App = () => {
@@ -22,13 +23,13 @@ const App = () => {
       <Route path="/translations"> 
       <RecordList/>
       </Route>
-      <Route path="/edit/:id" component={Edit} />
-      <Route path="/create">
-        <Create />
-      </Route>
-      <Route path="/flashcardset"> 
-      <FlashcardSet/>
-      </Route>
+      <Route path="/edit/:id" component={UpdateFlashcard} />
+
+      <Route path="/flashcards" component={Flashcards} />
+   
+      <Route  path="/create" component={AddFlashcard} />
+
+
       <Route path="/quiz"> 
       <Quiz/>
       </Route>

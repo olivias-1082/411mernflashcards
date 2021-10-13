@@ -10,8 +10,8 @@ const Navbar = () => {
     <div className = "nav">
       <nav className="navbar navbar-expand-lg">
         <NavLink className="navbar-brand" to="/">
-          Translation App
-        </NavLink>
+          Spanish Flashcards
+          </NavLink>
         <button
           className="navbar-toggler"
           type="button"
@@ -29,7 +29,7 @@ const Navbar = () => {
               <NavLink className="nav-link" to="/create">
                     Add Translation
               </NavLink>
-              <NavLink className="nav-link" to="/flashcardset">
+              <NavLink className="nav-link" to="/flashcards">
                     Flashcards
               </NavLink>
               <NavLink className="nav-link" to="/quiz">

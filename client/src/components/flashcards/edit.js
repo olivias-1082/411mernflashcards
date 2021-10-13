@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import axios from 'axios';
 import { withRouter } from "react-router";
 import './edit.css'
-class Edit extends Component {
+import Record from '../recordList'
+class UpdateFlashcard extends Component {
   constructor(props) {
     super(props);
- 
+    
     this.onChangeWord = this.onChangeWord.bind(this);
     this.onChangeWordTranslation = this.onChangeWordTranslation.bind(this);
    this.onSubmit = this.onSubmit.bind(this);
@@ -21,9 +22,8 @@ class Edit extends Component {
       .get("http://localhost:5000/record/" + this.props.match.params.id)
       .then((response) => {
         this.setState({
-          person_name: response.data.person_name,
-          person_position: response.data.person_position,
-          person_level: response.data.person_level,
+          word: response.data.word,
+          word_translation: response.data.word_translation,
         });
       })
       .catch(function (error) {
@@ -105,4 +105,4 @@ class Edit extends Component {
 }
  
  
-export default withRouter(Edit);
+export default withRouter(UpdateFlashcard);
