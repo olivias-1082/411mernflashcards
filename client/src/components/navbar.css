@@ -12,7 +12,7 @@ body {
 }
 
 header {
-    background-color: rgb(159, 229, 241);
+    background-color: none;
 }
 
 header::after {
@@ -40,14 +40,14 @@ nav li {
 }
 
 nav a {
-    color: blueviolet;
+    color: white;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 14px;
 }
 
 nav a:hover {
-    color: green;
+    color: orange;
 }
 
 nav a::before {
@@ -55,7 +55,7 @@ nav a::before {
     display: block;
     height: 5px;
     width: 100%;
-    background-color: blueviolet;
+    background-color: navy;
 
     position: absolute;
     top: 0;

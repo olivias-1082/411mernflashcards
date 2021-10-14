@@ -8,15 +8,15 @@ export default class HomePage extends Component {
   // This following section will display the table with the records of individuals.
   render() {
     return (
-<body>
+      <body>
+        <head>
+          <title>Hey'Hola</title>
+        </head>
+        <div class="title">
+        <h1>SPANIBLE</h1>
 
-       
-
-<h2>This will be the home page</h2>
-   
-</body>
-
-
+        </div>
+      </body>
     );
   }
 }
