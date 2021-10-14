@@ -5,6 +5,7 @@ export default class Quiz extends Component {
         return (
     
 <body>
+  
 
 <h3>This will be the  page with the quiz</h3>
 
