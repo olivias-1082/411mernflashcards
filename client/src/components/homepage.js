@@ -13,7 +13,7 @@ export default class HomePage extends Component {
           <title>Hey'Hola</title>
         </head>
         <div class="title">
-        <h1>SPANIBLE</h1>
+        <h1>CAMP SPAN'</h1>
 
         </div>
       </body>
