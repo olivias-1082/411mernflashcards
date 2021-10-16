@@ -1,82 +1,56 @@
-import React, {  useContext, useState,useReducer } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { FlashCard } from './flashcard'
 import axios from 'axios'
-
-const Flashcards = props =>{
-  const [records, setRecords] = useState([]);
-
-  const deleteCard = e=>{
-    console.log(e)
-    axios.delete(`http://localhost:5000/delete/${e}`)
-    .then(res=>{
-      console.log(res.data)
-      props.refresh()
-    })
+const FlashCards = () => {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [isFront, setIsFront] = useState(true)
+  const[records] = useState([]);
+  useEffect(() => {
+    getFlashcards()
+  }, )
+  
+  const handleCardFlip = () => {
+    setIsFront(!isFront)
   }
-  const flip = e => {
-    console.log(e.target.parentNode)
-    if (e.target.parentNode.classList.contains("flipped")){
-      e.target.parentNode.classList.remove("flipped")
-    }else{
-      e.target.parentNode.classList.add("flipped")
+  async function getFlashcards() {
+    try {
+      const res = await axios.get('http://localhost5000/record')
+      console.log(res)
+    
+    } catch (err) {
+      console.log(err);
     }
   }
-  if (props.displayType==="table"){
-    return(
-      <table className="col table table-bordered table-hover">
-        <thead className="thead-light">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Front</th>
-            <th scope="col">Back</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {records.map( (record,i)=>
-            <tr key={i}>
-              <td>{i+1}</td>
-              <td>{record.word}</td>
-              <td>{record.word_translation}</td>
-              <td>
-                <div className="btn-group">
-                  <button className="btn-sm btn-success"
-                          data-toggle="modal" 
-                          data-target="#editFormPopUp"
-                          onClick={e=>props.edit(record._id)}
-                          >Edit
-                  </button>
-                  <button className="btn-sm btn-danger"
-                          onClick={e=>deleteCard(record._id)}
-                          >Delete
-                  </button>
-                </div>
-                
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    );
+
+  const handleNextCard = () => {
+    setCurrentIndex((currentIndex + 1) % records.length)
+    setIsFront(true)
   }
-  else {
-    return(
-      <div className={`d-grid grid-${props.columns}`}>
-        {records.map((record,i)=>
-          <div className="flip-card" key={i} onClick={flip}>
-            <div className={`flip-card-inner font-${props.fontsize}`}>
-              <div className="flip-card-front">
-                {props.reverse? record.word_translation : record.word}
-              </div>
-              <div className="flip-card-back">
-                {props.reverse? record.word : record.word_translation}
-              </div>
-            </div>
+
+  const handlePreviousCard = () => {
+    setCurrentIndex((currentIndex - 1 + records.length) % records.length )
+    setIsFront(true)
+  }
+
+
+  const record = records && records.length && records[currentIndex]
+
+  return (
+    <div>
+
+      <div>
+          <div className="progress"  align = "center">{currentIndex + 1}/{records.length}</div>
+          <div onClick={handleCardFlip} align = "center">
+            <FlashCard record={record} isFront={isFront}/>
           </div>
-        )}
-    </div>    
-        
-    );
-  }
+      </div>
+      <div className="btn-container" align = "center">
+        <button className="btn" onClick={handlePreviousCard}>Previous</button>
+        <button className="btn" onClick={handleNextCard}>Next</button>
+      </div>
+
+    </div>
+  )
 }
 
-export default Flashcards
+export default FlashCards

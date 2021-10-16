@@ -13,7 +13,7 @@ import RecordList from "./components/recordList";
 import HomePage from "./components/homepage"
 import Quiz from "./components/quiz"
 
-const App = () => {
+function App ()  {
   return (
     <div>
       <Navbar />
@@ -25,7 +25,9 @@ const App = () => {
       </Route>
       <Route path="/edit/:id" component={UpdateFlashcard} />
 
-      <Route path="/flashcards" component={Flashcards} />
+      <Route path="/flashcards">
+      <Flashcards/>
+</Route>
    
       <Route  path="/create" component={AddFlashcard} />
 
