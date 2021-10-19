@@ -14,4 +14,4 @@ const RecordSchema = new mongoose.Schema({
 
 })
 
-module.exports = Flashcard = mongoose.model('flashcard', RecordSchema)
+module.exports = Record = mongoose.model('record', RecordSchema)

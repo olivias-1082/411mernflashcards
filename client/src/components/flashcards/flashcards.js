@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { FlashCard } from './flashcard'
+import { Flashcard } from './flashcard'
 import axios from 'axios'
 const FlashCards = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -39,9 +39,9 @@ const FlashCards = () => {
     <div>
 
       <div>
-          <div className="progress"  align = "center">{currentIndex + 1}/{records.length}</div>
+          //<div className="progress"  align = "center">{currentIndex + 1}/{records.length}</div>
           <div onClick={handleCardFlip} align = "center">
-            <FlashCard record={record} isFront={isFront}/>
+            <Flashcard record={record} isFront={isFront}/>
           </div>
       </div>
       <div className="btn-container" align = "center">

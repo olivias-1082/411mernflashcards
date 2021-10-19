@@ -44,7 +44,12 @@ align-items: center;
   transform: rotateY(-180deg) scaleX(-1);
   backface-visibility: visible;
 }
-
+.word_translation{
+  font-size: 40px;
+}
+.word{
+  font-size: 40px;
+}
 .card .back {
   background-color: #5c5c5c;
 }
