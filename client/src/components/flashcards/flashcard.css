@@ -1,15 +1,17 @@
 .card-container {
   perspective: 500px;
+  margin: 10px
 }
 
 .card {
-  height: 500px;
-  width: 800px;
+  height: 225px;
+  width: 450px;
   box-shadow: var(--box-shadow);
-  color: #fff;
+  color: rgb(255, 0, 0);
   border-radius: 12px;
   border-width: 1px;
   border-style: solid;
+  margin: 15px;
   align-content: center;
   position: relative;
 align-items: center;
@@ -45,16 +47,21 @@ align-items: center;
   backface-visibility: visible;
 }
 .word_translation{
-  font-size: 40px;
+  font-size: 70px;
 }
 .word{
-  font-size: 40px;
+  font-size: 70px;
 }
 .card .back {
-  background-color: #5c5c5c;
-}
+  background-color: #d8d8d8;
+  font-size: 30px;
 
+}
+.space{
+  margin: 2%;
+}
 .front {
-  background-color: #fff;
+  background-color: rgb(179, 179, 179);
   color:#340df3;
+  font-size: 30px;
 }
