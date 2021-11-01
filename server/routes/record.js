@@ -36,12 +36,27 @@ recordRoutes.route("/record/:id").get(function (req, res) {
       });
 });
 recordRoutes.route("/record/random").get(function (req, res) {
-  let db_connect = dbo.getDb("employees");
-  db_connect
-      .collection("records")
-      .aggrgation({ $sample: { size: 1 } })
+  db.records.aggregate(
+    { $sample: { size: 1 } }).toArray(function(err, docs) {
+     if (err) {
+       handleError(res, err.message, "Failed to get contacts.");
+     } else {
+       res.status(200).json(docs);     
+     }
+   });
+      
 });
-// This section will help you create a new record.
+recordRoutes.route("/record/random2").get(function (req, res) {
+  db.records.aggregate(
+    { $sample: { size: 1 } }).toArray(function(err, docs) {
+     if (err) {
+       handleError(res, err.message, "Failed to get contacts.");
+     } else {
+       res.status(200).json(docs);     
+     }
+   });
+      
+});
 recordRoutes.route("/record/add").post(function (req, res) {
   let db_connect = dbo.getDb("employees");
   let myobj = {

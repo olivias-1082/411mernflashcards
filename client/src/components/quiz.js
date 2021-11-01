@@ -12,9 +12,11 @@ export default class Quiz extends Component {
       record1_word_translation: "",
       record2_word: "",
       record2_word_translation: "",
-
       record3_word: "",
+      record3_word_translation: "",
       record4_word: "",
+      record4_word_translation: "",
+
       records: [],
     };
   }
@@ -31,7 +33,7 @@ export default class Quiz extends Component {
         console.log(error);
       });
       axios
-      .get("http://localhost:5000/record/random")
+      .get("http://localhost:5000/record/random2")
       .then((response) => {
         this.setState({
           record2_word: response.data.word,
@@ -53,7 +55,7 @@ export default class Quiz extends Component {
         console.log(error);
       });
       axios
-      .get("http://localhost:5000/record/random")
+      .get("http://localhost:5000/record/random2")
       .then((response) => {
         this.setState({
           record4_word: response.data.word,

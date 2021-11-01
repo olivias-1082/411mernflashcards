@@ -78,6 +78,7 @@ export default class Flashcards extends Component {
           record={currentrecord}
           word = {currentrecord.word}
           word_translation ={currentrecord.word_translation}
+          key= {currentrecord._id}
           />
       );
     });
