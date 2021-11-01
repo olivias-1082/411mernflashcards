@@ -30,6 +30,7 @@ const AddCard = props =>{
     <div class="w3-container">
 
       <div style={{ marginTop: 20 }}>
+        <h3 align="center"> Create a Translation</h3>
     <form onSubmit={e=>addCard(e)}>
       <label htmlFor="words">Word:</label>        
       <input name="word" 

@@ -7,7 +7,7 @@
   height: 225px;
   width: 450px;
   box-shadow: var(--box-shadow);
-  color: rgb(255, 0, 0);
+  color: rgb(0, 0, 0);
   border-radius: 12px;
   border-width: 1px;
   border-style: solid;
@@ -54,7 +54,7 @@ align-items: center;
 }
 .card .back {
   background-color: #d8d8d8;
-  font-size: 30px;
+  font-size: 35px;
 
 }
 .space{
@@ -63,5 +63,5 @@ align-items: center;
 .front {
   background-color: rgb(179, 179, 179);
   color:#340df3;
-  font-size: 30px;
+  font-size: 35px;
 }

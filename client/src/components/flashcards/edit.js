@@ -58,7 +58,7 @@ class UpdateFlashcard extends Component {
       )
       .then((res) => console.log(res.data));
  
-    this.props.history.push("/");
+    this.props.history.push("/translations");
   }
  
   render() {

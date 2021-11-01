@@ -10,7 +10,7 @@ const Record = (props) => (
     <td>
       <Link to={"/edit/" + props.record._id}>Edit</Link> |
       <a
-        href="/"
+        href="/translationss"
         onClick={() => {
           props.deleteTranslation(props.record._id);
         }}
@@ -22,14 +22,12 @@ const Record = (props) => (
 );
  
 export default class RecordList extends Component {
-  // This is the constructor that shall store our data retrieved from the database
   constructor(props) {
     super(props);
     this.deleteTranslation = this.deleteTranslation.bind(this);
     this.state = { records: [] };
   }
  
-  // This method will get the data from the database.
   componentDidMount() {
     axios
       .get("http://localhost:5000/record/")
@@ -76,8 +74,8 @@ export default class RecordList extends Component {
         <table className="table table-striped" style={{ marginTop: 5 }}>
           <thead>
             <tr>
-              <th>Word</th>
-              <th>Translation</th>
+              <th>English Word</th>
+              <th>Spanish Translation</th>
               <th>Action</th>
             </tr>
           </thead>
