@@ -5,75 +5,45 @@ const bcrypt = require("bcrypt")
 const mongoose = require("mongoose")
 
 const dbo = require("../db/conn");
-const userSchema=mongoose.Schema({
-  username:{
-      type:String,
-      required:true,
-  },
-  email:{
-      type:String,
-      required:true,
-  },
-  password:{
-      type:String,
-      required:true,
-  },
-}, {timestamps: true})
-const User = mongoose.model("User", userSchema)
-
-recordRoutes.post("/register", async(req, res)=>{
-  const user = req.body;
-  const takenUsername=await User.findOne({username:user.username})
-  const takenEmail=await User.findOne({email:user.email})
-  if(takenUsername || takenEmail){
-      res.json({message: "Username or email has already been taken"})
-  }
-  else{
-      user.password = awaitbcrypt.hash(req.body.password, 10)
-      const dbUser = new User({
-          username:user.username.toLowerCase(),
-          email: user.email.toLowerCase(),
-          password: user.password
-      })
-      dbUser.save()
-      res.json({message: "Success"})
-  }
+const userSchema = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String
 })
-recordRoutes.post("/login", (req, res) =>{
-  const userLoggingLin = req.body;
-  User.findOne({username:userLoggingLin.username})
-  .then(dbUser=>{
-      if (!dbUser){
-          return res.json({
-              message: "Invalid Username or Password"
+
+const User = new mongoose.model("User", userSchema)
+
+recordRoutes.post("/register"), async (req, res, next) => {
+  let db_connect = dbo.getDb("employees");
+    console.log(req.body) 
+    const {name,email,password} =req.body;
+    db_connect.collection("users").findOne({email:email},(err,user)=>{
+        if(user){
+            res.send({message:"user already exist"})
+        }else {
+            let user = ({
+              name: name,
+              email: email,
+              password: password})
+          db_connect.collection("users").insertOne(myobj, function (err, res) {
+            if (err) throw err;
           })
+        }
+    })
+
+  };
+recordRoutes.post("/login", (req, res) =>{
+  const {email,password} =req.body;
+  User.findone({email:email},(err,user)=>{
+      if(user){
+         if(password === user.password){
+             res.send({message:"login sucess",user:user})
+         }else{
+             res.send({message:"wrong credentials"})
+         }
+      }else{
+          res.send("not register")
       }
-      bcrypt.compare(userLoggingLin.password, dbUser.password)
-      .then(isCorrect =>{
-          if (isCorrect){
-              const payload = {
-                  id: dbUser._id,
-                  username: dbUser.usernamem
-              }
-              jwt.sign(
-                  payload,
-                  process.env.JWT_SECRET,
-                  {expiresIn:86400},
-                  (err,token)=>{
-                      if(err) return res.json({message: err})
-                      return res.json({
-                          message:"Success",
-                          token: "Bearer " + token
-                      })
-                  }
-              )
-          }
-          else{
-              return res.json({
-                  message: "Invalid Username or Password"
-              })
-          }
-      })
   })
 }
 

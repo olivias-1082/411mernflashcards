@@ -37,10 +37,9 @@ function Navbar () {
             ? 
               <li><a href="/usertranslations">All Translations</a></li>
               : <li><a href="/login">Login</a></li>};
-  {username
-            ?               <li><div onClick={logout}>Logout</div></li>
-          : <li></li> }
-            
+            {username
+            ? <li><div onClick={logout}>Logout</div></li>
+             : <li></li> }
           </ul>
         </nav>
         </div>

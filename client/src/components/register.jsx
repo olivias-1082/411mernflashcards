@@ -2,15 +2,15 @@ import {useHistory} from 'react-router'
 import {useEffect} from 'react'
 function Register(){
     const history = useHistory()
-    function handleLogin(e){
+    async function handleRegister(e){
         e.preventDefault()
         const form = e.target;
         const user = {
             email: form[0].value,
-            email: form[1].value
+            password: form[1].value
 
         }
-        fetch("/register",{
+        fetch("http://localhost:5000/register",{
             method: "POST",
             headers:{
                 "Content-type": "application/json"
@@ -18,10 +18,7 @@ function Register(){
             body: JSON.stringify(user)
 
         })
-        .then(res => res.json())
-        .then(data => {
-            localStorage.setItem("token", data.token) 
-        })
+   
     }
     useEffect(() => {
         fetch("/isUserAuth", {
@@ -30,12 +27,14 @@ function Register(){
             }
         })
         .then(res => res.json())
-        .then(data => data.isLoggedIn ? history.push("/dashboard"): null)
+        .then(data => data.isLoggedIn ? history.push("/"): null)
 
     },[])
     return(
-        <form onSubmit={event => handleLogin(event)}>
+        <form onSubmit={event => handleRegister(event)}>
+                  <label htmlFor="email">Email:</label>  
             <input required type="email"/>
+            <label htmlFor="password">Password:</label>  
             <input required type="password"/>
             <input type="submit" value="Register"/>
         </form>
