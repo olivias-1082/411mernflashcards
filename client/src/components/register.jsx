@@ -49,7 +49,7 @@ const Register = (props) => {
         <input name="email" 
                   style={{width: "100%"}}
                   rows="1"
-                  value={email.toLowerCase()}
+                  value={email}
                   placeholder={errors.email? errors.email
                     .properties.message : null}
                   onChange={e=>setEmail(e.target.value)}>

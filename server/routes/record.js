@@ -5,26 +5,26 @@ const bcrypt = require("bcrypt")
 const mongoose = require("mongoose")
 
 const dbo = require("../db/conn");
+
+
 recordRoutes.route("/register").post(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+  let db_connect = dbo.getDb("employees");  
+  let newPassword = bcrypt.hash(req.body.password, 10);
   let myobj = {
     name: req.body.name,
     email: req.body.email,
-    password: req.body.password
+    password: newPassword
   };
+  
   db_connect.collection("users").insertOne(myobj, function (err, res) {
     if (err) throw err;
   });
 });
-recordRoutes.route("/login").post(function (req, res) {
-  let db_connect = dbo.getDb("employees");
-  let myobj = {
-    email: req.body.email,
-    password: req.body.password
-  };
-    db_connect.collection("users").findOne({email: myobj.email}, (err, user) => {
+recordRoutes.post("/login", (req, res)=> {
+  const { email, password} = req.body
+  db_connect.collection("users").findOne({email: email}, (err, user) => {
     if(user){
-          if(myobj.password === user.password ) {
+          if(password === user.password ) {
               res.send({message: "Login Successfull", user: user})
           } else {
               res.send({ message: "Password didn't match"})

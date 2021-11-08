@@ -35,7 +35,7 @@ const Login = ({ setLoginUser}) => {
              <div style={{ marginTop: 20 }}>
                <h3 align="center"> Login</h3>
            <form onSubmit={e=>login(e)}>
-             <label htmlFor="email">Name:</label>        
+             <label htmlFor="emal">Name:</label>        
              <input type="text" name="email" value={user.email} onChange={handleChange} placeholder="Enter your Email"></input>
 
             
