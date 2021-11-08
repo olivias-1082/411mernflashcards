@@ -41,6 +41,7 @@ const Register = (props) => {
         <input name="name" 
                   style={{width: "100%"}}
                   rows="1"
+                  
                   value={name}
                   placeholder={errors.name? errors.name.properties.message : null}
                   onChange={e=>setName(e.target.value)}>
@@ -50,6 +51,7 @@ const Register = (props) => {
                   style={{width: "100%"}}
                   rows="1"
                   value={email}
+                  type="email"
                   placeholder={errors.email? errors.email
                     .properties.message : null}
                   onChange={e=>setEmail(e.target.value)}>

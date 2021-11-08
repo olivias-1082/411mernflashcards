@@ -1,7 +1,7 @@
 const express = require("express");
 const recordRoutes = express.Router();
-const jwt = require("jsonwebtoken")
-const bcrypt = require("bcrypt")
+const jwt = require('jsonwebtoken')
+const bcrypt = require('bcrypt')
 const mongoose = require("mongoose")
 
 const dbo = require("../db/conn");
@@ -9,30 +9,44 @@ const dbo = require("../db/conn");
 
 recordRoutes.route("/register").post(function (req, res) {
   let db_connect = dbo.getDb("employees");  
-  let newPassword = bcrypt.hash(req.body.password, 10);
-  let myobj = {
+  let newPassword = bcrypt.hash(req.body.password, 10).toString();
+  const myobj = {
     name: req.body.name,
     email: req.body.email,
     password: newPassword
   };
   
   db_connect.collection("users").insertOne(myobj, function (err, res) {
-    if (err) throw err;
+    if (err) throw err .catch();
   });
 });
-recordRoutes.post("/login", (req, res)=> {
-  const { email, password} = req.body
-  db_connect.collection("users").findOne({email: email}, (err, user) => {
-    if(user){
-          if(password === user.password ) {
-              res.send({message: "Login Successfull", user: user})
-          } else {
-              res.send({ message: "Password didn't match"})
-          }
-      } else {
-          res.send({message: "User not registered"})
-      }
-  })
+recordRoutes.post("/login", async (req, res)=> {
+  let db_connect = dbo.getDb("employees");  
+
+  const user = await db_connect.collection("users").findOne({
+		email: req.body.email,
+	})
+  if (!user) {
+		return { status: 'error', error: 'Invalid login' }
+	}
+  const isPasswordValid = await bcrypt.compare(
+		req.body.password,
+		user.password
+	)
+
+	if (isPasswordValid) {
+		const token = jwt.sign(
+			{
+				name: user.name,
+				email: user.email,
+			},
+			'secret123'
+		)
+
+		return res.json({ status: 'ok', user: token })
+	} else {
+		return res.json({ status: 'error', user: false })
+	}
 }) 
 
 // This section will help you get a list of all the records.
@@ -42,7 +56,7 @@ recordRoutes.route("/record").get(function (req, res) {
     .collection("records")
     .find({})
     .toArray(function (err, result) {
-      if (err) throw err;
+      if (err) throw err .catch();
       res.json(result);
     });
 });
@@ -55,7 +69,7 @@ recordRoutes.route("/record/:id").get(function (req, res) {
   .collection("records")
   .findOne(myquery, function (err, result) {
 
-        if (err) throw err;
+        if (err) throw err .catch();
         res.json(result)
       
        
@@ -94,7 +108,7 @@ recordRoutes.route("/record/add").post(function (req, res) {
     word_translation: req.body.word_translation,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
-    if (err) throw err;
+    if (err) throw err .catch();
   });
 });
 
