@@ -5,71 +5,36 @@ const bcrypt = require("bcrypt")
 const mongoose = require("mongoose")
 
 const dbo = require("../db/conn");
-const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  password: String
-})
-
-const User = new mongoose.model("User", userSchema)
-
-recordRoutes.post("/register"), async (req, res, next) => {
+recordRoutes.route("/register").post(function (req, res) {
   let db_connect = dbo.getDb("employees");
-    console.log(req.body) 
-    const {name,email,password} =req.body;
-    db_connect.collection("users").findOne({email:email},(err,user)=>{
-        if(user){
-            res.send({message:"user already exist"})
-        }else {
-            let user = ({
-              name: name,
-              email: email,
-              password: password})
-          db_connect.collection("users").insertOne(myobj, function (err, res) {
-            if (err) throw err;
-          })
-        }
-    })
-
+  let myobj = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password
   };
-recordRoutes.post("/login", (req, res) =>{
-  const {email,password} =req.body;
-  User.findone({email:email},(err,user)=>{
-      if(user){
-         if(password === user.password){
-             res.send({message:"login sucess",user:user})
-         }else{
-             res.send({message:"wrong credentials"})
-         }
-      }else{
-          res.send("not register")
+  db_connect.collection("users").insertOne(myobj, function (err, res) {
+    if (err) throw err;
+  });
+});
+recordRoutes.route("/login").post(function (req, res) {
+  let db_connect = dbo.getDb("employees");
+  let myobj = {
+    email: req.body.email,
+    password: req.body.password
+  };
+    db_connect.collection("users").findOne({email: myobj.email}, (err, user) => {
+    if(user){
+          if(myobj.password === user.password ) {
+              res.send({message: "Login Successfull", user: user})
+          } else {
+              res.send({ message: "Password didn't match"})
+          }
+      } else {
+          res.send({message: "User not registered"})
       }
   })
-}
+}) 
 
-)
-function verifyJWT(req, res, next){
-  const token = req.header[x-access-token]?.split(' ')[1]
-  if(token){
-      jwt.verify(token, process.env.PASSPORTSECRET,(err,decoded)=>{
-          if(err) return res.json({
-              isLoggedIn: false,
-              message: "Failed to Authenticate"
-
-          })
-          req.user={};
-          req.user.id = decoded.id
-          req.user.username = decoded.username
-          next()
-      })
-  }
-  else{
-      res.json({message: "Incorrect Token Given", isLoggedIn:false})
-  }
-}
-recordRoutes.get("/getUsername", verifyJWT, (req, res) => {
-  res.json({isLoggedIn: true, username: req.user.username})
-})
 // This section will help you get a list of all the records.
 recordRoutes.route("/record").get(function (req, res) {
   let db_connect = dbo.getDb("employees");
