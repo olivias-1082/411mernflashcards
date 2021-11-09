@@ -11,13 +11,15 @@ body {
 }
 .title{
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
  .title h1{
    color: white;
-   font-size: 80px;
+   font-size: 50px;
+   height: 60px;
+  
  }
 footer {
     width: 100%;
@@ -30,4 +32,37 @@ footer {
     text-align:center;
     font-size:30px;
     font-weight:bold;
+}
+
+.wordchange {
+  position: absolute;
+  top: 50%;
+  left: 34%;
+  padding: 0px;
+  white-space: nowrap;
+  
+}
+
+.phrases::before {
+  content: 'Hola, como estas?';
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  height: 200px;
+  animation-name: wordschange;
+  animation-duration: 4s;
+  
+}
+
+
+@keyframes wordschange {
+  0%{
+    content: 'Hola, come estas?';
+  }
+  50%{
+    content: 'Estás listo para estudiar?';
+  }
+  100%{
+    content: 'Cuál es tu color preferido?';
+  }
 }
