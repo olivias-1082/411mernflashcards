@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react'
 import axios from 'axios'
 import './flashcards.css'
-const Flashcard = (record, isFront) => {
+const Flashcard = (record) => {
 const words = record.word;
 const translations = record.word_translation;
 //document.querySelector('#cardId').classList.toggle('flip');
@@ -92,7 +92,11 @@ export default class Flashcards extends Component {
 <div className = "space">
   <p></p>
 </div>
-        <h3 align="center">Flashcards</h3>
+        <h1 align="center">Flashcards</h1>
+        <div class="container" >
+
+        <p align="center" >Hover over a card to see its spanish translation</p>
+        </div>
     {this.recordList()}
        
       </div>
