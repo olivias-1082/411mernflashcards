@@ -46,6 +46,7 @@ export default class RecordList extends Component {
           record={currentrecord}
           key={currentrecord._id}
         />
+        
       );
     });
   }

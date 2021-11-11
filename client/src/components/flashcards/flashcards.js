@@ -1,37 +1,35 @@
 import React, { Component, useState } from 'react'
 import axios from 'axios'
-import './flashcard.css';
 import './flashcards.css'
 const Flashcard = (record, isFront) => {
 const words = record.word;
 const translations = record.word_translation;
+//document.querySelector('#cardId').classList.toggle('flip');
+
 return (
 
-  <div className="card-container">
-  <div className={record ? "card visibility" : "card"}>
-   
-    <div className={isFront ? "back card-face " : "front card-face"}>
-      <div className={isFront ? "words" : "translations"}>{isFront ? words : translations}</div>
+
+<div class="flipcard h" >
+  <div className="card2">
+    <div className="front">
+      <div> {words}</div>     
     </div>
-  </div>
+    <div className="back">
+      {translations}
+    </div>
+    </div>
 </div>
 )
 }
 
 const FlashCards = (props) => {
-  const [isFront, setIsFront] = useState(true)
-
-  const handleCardFlip = () => {
-    setIsFront(!isFront)
-  }
+  
 
   return (
     <div>
 
       <div>
-          <div onClick={handleCardFlip} align = "center">
-            <Flashcard record={props.record} isFront={isFront} word={props.word} word_translation={props.word_translation}/>
-          </div>
+            <Flashcard record={props.record} word={props.word} word_translation={props.word_translation}/>
       </div>
 
 
@@ -74,12 +72,14 @@ export default class Flashcards extends Component {
   recordList() {
     return this.state.records.map((currentrecord) => {
       return (
+        <div className="margin">
         <FlashCards
           record={currentrecord}
           word = {currentrecord.word}
           word_translation ={currentrecord.word_translation}
           key= {currentrecord._id}
           />
+          </div>
       );
     });
   }
@@ -88,7 +88,7 @@ export default class Flashcards extends Component {
   render() {
     return (
 
-      <div>
+      <div >
 <div className = "space">
   <p></p>
 </div>

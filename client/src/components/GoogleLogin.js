@@ -1,7 +1,5 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login';
-import '../config.env'
-import './googleLogin.css';
 const login = async (code) => {
   return fetch('/api/auth/google', {
     method: 'POST',
