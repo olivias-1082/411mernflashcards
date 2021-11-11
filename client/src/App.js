@@ -3,7 +3,8 @@ import {Switch} from "react-router-dom";
 import { Route as Router, BrowserRouter, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import Register from "./components/register";
-import Login from "./components/GoogleLogin";
+import Login from './components/Login'
+import Logout from './components/Logout'
 
 import Navbar from "./components/navbar";
 import UpdateFlashcard from "./components/flashcards/edit";

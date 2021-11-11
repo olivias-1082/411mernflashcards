@@ -2,6 +2,9 @@ import "bootstrap/dist/css/bootstrap.css";
  import './navbar.css';
  import {useHistory, Link} from 'react-router'
  import {useEffect, useState} from 'react'
+ import Login from './Login'
+ import Logout from './Logout'
+
 function Navbar () {
   const history = useHistory()
   const [username, setUsername]= useState(null)
@@ -36,7 +39,7 @@ function Navbar () {
             {username
             ? 
               <li><a href="/usertranslations">All Translations</a></li>
-              : <li><a href="/login">Login</a></li>};
+              : <li><a href="/login"><Login /></a></li>}
             {username
             ? <li><div onClick={logout}>Logout</div></li>
              : <li></li> }
