@@ -1,81 +1,37 @@
 const express = require("express");
 const recordRoutes = express.Router();
 const jwt = require('jsonwebtoken')
+require("dotenv").config();
+const session = require("express-session");
+const passport = require("passport");
+const passportLocalMongoose = require("passport-local-mongoose");
+const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const findOrCreate = require("mongoose-findorcreate");
 const bcrypt = require('bcrypt')
+const { OAuth2Client } = require('google-auth-library');
+
 const mongoose = require("mongoose")
+mongoose.set("useCreateIndex", true);
+login = async (req, res) => {
+  try {
+    const code = req.body.code;
+    const profile = await googleOAuth.getProfileInfo(code);
 
-const dbo = require("../db/conn");
+    const user = {
+      googleId: profile.sub,
+      name: profile.name,
+      firstName: profile.given_name,
+      lastName: profile.family_name,
+      email: profile.email,
+      profilePic: profile.picture,
+    };
 
-
-recordRoutes.route("/register").post(function (req, res) {
-  let db_connect = dbo.getDb("employees");  
-  let newPassword = bcrypt.hash(req.body.password, 10).toString();
-  const myobj = {
-    name: req.body.name,
-    email: req.body.email,
-    password: newPassword
-  };
-  
-  db_connect.collection("users").insertOne(myobj, function (err, res) {
-    if (err) throw err .catch();
-  });
-});
-recordRoutes.post("/login", async (req, res)=> {
-  let db_connect = dbo.getDb("employees");  
-
-  const user = await db_connect.collection("users").findOne({
-		email: req.body.email,
-	})
-  if (!user) {
-		return { status: 'error', error: 'Invalid login' }
-	}
-  const isPasswordValid = await bcrypt.compare(
-		req.body.password,
-		user.password
-	)
-
-	if (isPasswordValid) {
-		const token = jwt.sign(
-			{
-				name: user.name,
-				email: user.email,
-			},
-			'secret123'
-		)
-
-		return res.json({ status: 'ok', user: token })
-	} else {
-		return res.json({ status: 'error', user: false })
-	}
-}) 
-
-// This section will help you get a list of all the records.
-recordRoutes.route("/record").get(function (req, res) {
-  let db_connect = dbo.getDb("employees");
-  db_connect
-    .collection("records")
-    .find({})
-    .toArray(function (err, result) {
-      if (err) throw err .catch();
-      res.json(result);
-    });
-});
-
-// This section will help you get a single record by id
-recordRoutes.route("/record/:id").get(function (req, res) {
-  let db_connect = dbo.getDb("employees");
-  let myquery = { id: req.body.id };
-  db_connect
-  .collection("records")
-  .findOne(myquery, function (err, result) {
-
-        if (err) throw err .catch();
-        res.json(result)
-      
-       
-        
-      });
-});
+    res.send({ user });
+  } catch (e) {
+    console.log(e);
+    res.status(401).send();
+  }
+};
 recordRoutes.route("/record/random").get(function (req, res) {
   let db_connect = dbo.getDb("employees");
 db_connect
@@ -90,6 +46,32 @@ db_connect
    });
       
 });
+router.post('/google', login);
+
+const client = new OAuth2Client(
+  config.env.GOOGLE_CLIENT_ID,
+  config.env.GOOGLE_CLIENT_SECRET,
+  /**
+   * To get access_token and refresh_token in server side,
+   * the data for redirect_uri should be postmessage.
+   * postmessage is magic value for redirect_uri to get credentials without actual redirect uri.
+   */
+  'postmessage'
+);
+
+getProfileInfo = async (code) => {
+  const r = await client.getToken(code);
+  const idToken = r.tokens.id_token;
+
+  const ticket = await client.verifyIdToken({
+    idToken,
+    audience: config.env.GOOGLE_CLIENT_ID,
+  });
+
+  const payload = ticket.getPayload();
+
+  return payload;
+};
 recordRoutes.route("/record/random2").get(function (req, res) {
   db.records.aggregate(
     { $sample: { size: 1 } }).toArray(function(err, docs) {

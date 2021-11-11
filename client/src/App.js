@@ -2,9 +2,8 @@ import React from "react";
 import {Switch} from "react-router-dom";
 import { Route as Router, BrowserRouter, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import { Provider } from "react-redux";
 import Register from "./components/register";
-import Login from "./components/login";
+import Login from "./components/GoogleLogin";
 
 import Navbar from "./components/navbar";
 import UpdateFlashcard from "./components/flashcards/edit";
@@ -16,23 +15,52 @@ import HomePage from "./components/homepage"
 import Quiz from "./components/quiz"
 import RecordListFull from "./components/recordListFull";
 
-function App ()  {
-  return (
-    <div>
+class App extends React.Component {
+  state = {
+    isLoggedIn: false,
+    userProfile: null,
+  };
+
+  login = (userData) => {
+    this.setState({
+      isLoggedIn: true,
+      userProfile: userData.user,
+    });
+  };
+
+  logout = () => {
+    this.setState({
+      isLoggedIn: false,
+      userProfile: null,
+    });
+  };
+
+  render() {
+    return (
+
+  <div>
       <Navbar />
       <Route exact path="/">
         <HomePage />
       </Route>
-      <Route path="/translations"> 
-      <RecordList/>
-      </Route>
+  
+              {this.state.isLoggedIn ? (
+              
       <Route path="/usertranslations"> 
       <RecordListFull/>
       </Route>
+   ):(
+    <Route path="/translations"> 
+      <RecordList/>
+      </Route>
+
+   )}
+
       <Route path="/edit/:id" component={UpdateFlashcard} />
 
       <Route path="/flashcards">
       <Flashcards/>
+
 </Route>
 <Switch>
   <Route component={Register} exact path="/register"/>
@@ -46,7 +74,9 @@ function App ()  {
       <Quiz/>
       </Route>
     </div>
-  );
+    )}
+
 };
+
 
 export default App;

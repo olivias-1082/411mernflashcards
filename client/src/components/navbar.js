@@ -24,11 +24,6 @@ function Navbar () {
       <header>
         <div class="container">
         <nav>
-          <b>
-            <li><a href="/">CAMP SPAN'</a></li>
-          </b>
-
-          
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/flashcards">Flashcards</a></li>
