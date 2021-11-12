@@ -2,8 +2,7 @@ import "bootstrap/dist/css/bootstrap.css";
  import './navbar.css';
  import {useHistory, Link} from 'react-router'
  import {useEffect, useState} from 'react'
- import Login from './Login'
- import Logout from './Logout'
+ import GoogleLoginComponent from '../googlebutton.component'
 
 function Navbar () {
   const history = useHistory()
@@ -39,10 +38,11 @@ function Navbar () {
             {username
             ? 
               <li><a href="/usertranslations">All Translations</a></li>
-              : <li><a href="/login"><Login /></a></li>}
+              : <li><a href="/"><GoogleLoginComponent /></a></li>}
             {username
             ? <li><div onClick={logout}>Logout</div></li>
              : <li></li> }
+            <div> </div>
           </ul>
         </nav>
         </div>
