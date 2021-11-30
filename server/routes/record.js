@@ -1,127 +1,84 @@
 const express = require("express");
+
+// recordRoutes is an instance of the express router.
+// We use it to define our routes.
+// The router will be added as a middleware and will take control of requests starting with path /record.
 const recordRoutes = express.Router();
-const jwt = require('jsonwebtoken')
-require("dotenv").config();
-const session = require("express-session");
-const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const findOrCreate = require("mongoose-findorcreate");
-const bcrypt = require('bcrypt')
-const { OAuth2Client } = require('google-auth-library');
 
-const mongoose = require("mongoose")
-mongoose.set("useCreateIndex", true);
-login = async (req, res) => {
-  try {
-    const code = req.body.code;
-    const profile = await googleOAuth.getProfileInfo(code);
+// This will help us connect to the database
+const dbo = require("../db/conn");
 
-    const user = {
-      googleId: profile.sub,
-      name: profile.name,
-      firstName: profile.given_name,
-      lastName: profile.family_name,
-      email: profile.email,
-      profilePic: profile.picture,
-    };
+// This help convert the id from string to ObjectId for the _id.
+const ObjectId = require("mongodb").ObjectId;
 
-    res.send({ user });
-  } catch (e) {
-    console.log(e);
-    res.status(401).send();
-  }
-};
-recordRoutes.route("/record/random").get(function (req, res) {
+
+// This section will help you get a list of all the records.
+recordRoutes.route("/record").get(function (req, res) {
   let db_connect = dbo.getDb("employees");
-db_connect
-  .collection("records")
-  .aggregate(
-    { $sample: { size: 2 } }).toArray(function(err, docs) {
-     if (err) {
-       handleError(res, err.message, "Failed to get contacts.");
-     } else {
-       res.status(200).json(docs);     
-     }
-   });
-      
+  db_connect
+    .collection("records")
+    .find({})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
 });
-router.post('/google', login);
 
-const client = new OAuth2Client(
-  config.env.GOOGLE_CLIENT_ID,
-  config.env.GOOGLE_CLIENT_SECRET,
-  /**
-   * To get access_token and refresh_token in server side,
-   * the data for redirect_uri should be postmessage.
-   * postmessage is magic value for redirect_uri to get credentials without actual redirect uri.
-   */
-  'postmessage'
-);
-
-getProfileInfo = async (code) => {
-  const r = await client.getToken(code);
-  const idToken = r.tokens.id_token;
-
-  const ticket = await client.verifyIdToken({
-    idToken,
-    audience: config.env.GOOGLE_CLIENT_ID,
-  });
-
-  const payload = ticket.getPayload();
-
-  return payload;
-};
-recordRoutes.route("/record/random2").get(function (req, res) {
-  db.records.aggregate(
-    { $sample: { size: 1 } }).toArray(function(err, docs) {
-     if (err) {
-       handleError(res, err.message, "Failed to get contacts.");
-     } else {
-       res.status(200).json(docs);     
-     }
-   });
-      
+// This section will help you get a single record by id
+recordRoutes.route("/record/:id").get(function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId( req.params.id )};
+  db_connect
+      .collection("records")
+      .findOne(myquery, function (err, result) {
+        if (err) throw err;
+        res.json(result);
+      });
 });
-recordRoutes.route("/record/add").post(function (req, res) {
-  let db_connect = dbo.getDb("employees");
+
+// This section will help you create a new record.
+recordRoutes.route("/record/add").post(function (req, response) {
+  let db_connect = dbo.getDb();
   let myobj = {
-    word: req.body.word,
-    word_translation: req.body.word_translation,
+    person_name: req.body.person_name,
+    person_position: req.body.person_position,
+    person_level: req.body.person_level,
   };
   db_connect.collection("records").insertOne(myobj, function (err, res) {
-    if (err) throw err .catch();
+    if (err) throw err;
+    response.json(res);
   });
 });
 
 // This section will help you update a record by id.
-recordRoutes.route("/update/:id").put(function (req, res) {
-  let db_connect = dbo.getDb("employees");
-  let myquery = { id: req.body.id };
+recordRoutes.route("/update/:id").post(function (req, response) {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId( req.params.id )};
   let newvalues = {
     $set: {
-      word: req.body.word,
-      word_translation: req.body.word_translation,
-      
+      person_name: req.body.person_name,
+      person_position: req.body.person_position,
+      person_level: req.body.person_level,
     },
   };
   db_connect
     .collection("records")
-    .update0ne(myquery, newvalues, function (err, res) {
+    .updateOne(myquery, newvalues, function (err, res) {
       if (err) throw err;
       console.log("1 document updated");
+      response.json(res);
     });
 });
 
 // This section will help you delete a record
-recordRoutes.route("/record/delete/:id").delete((req, res) => {
-  let db_connect = dbo.getDb("employees");
-  var myquery = { id: req.body.id };
+recordRoutes.route("/:id").delete((req, response) => {
+  let db_connect = dbo.getDb();
+  let myquery = { _id: ObjectId( req.params.id )};
   db_connect.collection("records").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");
+    response.status(obj);
   });
 });
-
 
 module.exports = recordRoutes;

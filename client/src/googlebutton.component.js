@@ -1,8 +1,19 @@
 import React, { Component } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { Redirect } from "react-router";
+import { useHistory } from "react-router-dom";
 
 const CLIENT_ID =
   '135407762997-3bssb7baraqs93ksccr3k3ue2rbuecl9.apps.googleusercontent.com';
+
+const App = (props) => {
+    let history = useHistory();
+    // Redirects user after authentication 
+    const responseGoogleSuccess = () => {
+    
+        history.push('http://localhost:3000/');
+    }
+};
 
 class GoogleLoginComponent extends Component {
   constructor() {
@@ -59,6 +70,8 @@ class GoogleLoginComponent extends Component {
               clientId={CLIENT_ID}
               buttonText="Sign In with Google"
               onSuccess={this.responseGoogleSuccess}
+              uxMode='redirect'
+              redirectUri='http://localhost:3000/'
               onFailure={this.responseGoogleError}
               isSignedIn={true}
               cookiePolicy={"single_host_origin"}
@@ -70,5 +83,3 @@ class GoogleLoginComponent extends Component {
   }
 }
 export default GoogleLoginComponent;
-
-// <h1>Welcome, {this.state.userInfo.name}</h1>

@@ -2,24 +2,17 @@ import "bootstrap/dist/css/bootstrap.css";
  import './navbar.css';
  import {useHistory, Link} from 'react-router'
  import {useEffect, useState} from 'react'
+ import { GoogleLogin, GoogleLogout, useGoogleLogin } from "react-google-login";
  import GoogleLoginComponent from '../googlebutton.component'
+ import { withRouter } from 'react-router'
 
-function Navbar () {
-  const history = useHistory()
-  const [username, setUsername]= useState(null)
-  async function logout(){
-    localStorage.removeItem("token")
-    await history.push("/login")
+function Navbar (props) {
+
+  const isLoggedIn = GoogleLoginComponent;
+
+  if (props.location.pathname === "/login") {
+      return false;
   }
-  useEffect(() =>{
-    fetch("/isUserAuth", {
-      headers: {
-          "x-access-token": localStorage.getItem("token")
-      }
-  })
-  .then(res => res.json())
-  .then(data => data.isLoggedIn ? setUsername(data.username): null)
-  },[])
 
   return (
     <body>
@@ -27,22 +20,14 @@ function Navbar () {
         <div class="container">
         <nav>
           <ul>
+            
             <li><a href="/">Home</a></li>
             <li><a href="/flashcards">Flashcards</a></li>
             <li><a href="/quiz">Quiz</a></li>
-            {username
-            ? <li><a href="/create">Add Translation</a></li>
-              : <li><a href="/translations">All Translations</a></li>
-            }
+            <li><a href="/usertranslations">All Translations</a></li>
+            <li><a href="/create">Add Translation</a></li> 
+            <li><a href="/login"><GoogleLoginComponent /></a></li>
             
-            {username
-            ? 
-              <li><a href="/usertranslations">All Translations</a></li>
-              : <li><a href="/"><GoogleLoginComponent /></a></li>}
-            {username
-            ? <li><div onClick={logout}>Logout</div></li>
-             : <li></li> }
-            <div> </div>
           </ul>
         </nav>
         </div>
@@ -52,4 +37,4 @@ function Navbar () {
   );
 };
  
-export default Navbar;
+export default withRouter(Navbar);
