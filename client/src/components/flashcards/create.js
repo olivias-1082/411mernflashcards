@@ -28,7 +28,7 @@ const AddCard = props =>{
   }
   return(
     <div class="w3-container">
-      <h3 align = "center"> Create a Translation</h3>
+
       <div style={{ marginTop: 20 }}>
         <h3 align="center"> Create a Translation</h3>
     <form onSubmit={e=>addCard(e)}>
