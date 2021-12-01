@@ -5,6 +5,7 @@
     perspective: 500px;
     float: left;
     margin-left: 20px;
+   margin: .5%;
     
 
 align-self: center;
@@ -89,8 +90,9 @@ vertical-align: middle;
     align-content: center;
     position: relative;
     vertical-align: middle;
-    margin: 2%;
-    margin-left: 29%;
+    margin: 3%;
+    margin-left: 25%;
+    margin-right: 25%;
 
   }
   .containers{

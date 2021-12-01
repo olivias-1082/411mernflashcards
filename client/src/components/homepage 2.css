@@ -1,0 +1,68 @@
+head{
+  margin: 0 auto;
+}
+body {
+    margin: 0 auto;
+    background-size:cover;
+    align: center;
+  margin-left:20px;
+  background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('https://www.cactuslanguage.com/wp-content/uploads/2018/12/Spanish-Summer-Camp-Barcelona-8.png');
+  background-size: cover;
+}
+.title{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+ .title h1{
+   color: white;
+   font-size: 50px;
+   height: 60px;
+  
+ }
+footer {
+    width: 100%;
+    bottom: 0px;
+    background-color: #000;
+    color: #fff;
+    position: absolute;
+    padding-top:20px;
+    padding-bottom:50px;
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+}
+
+.wordchange {
+  position: absolute;
+  top: 50%;
+  left: 34%;
+  padding: 0px;
+  white-space: nowrap;
+  
+}
+
+.phrases::before {
+  content: 'Hola, como estas?';
+  position: absolute;
+  color: white;
+  font-size: 30px;
+  height: 200px;
+  animation-name: wordschange;
+  animation-duration: 6s;
+  
+}
+
+
+@keyframes wordschange {
+  0%{
+    content: 'Hola, come estas?';
+  }
+  50%{
+    content: 'Estás listo para estudiar?';
+  }
+  100%{
+    content: 'Cuál es tu color preferido?';
+  }
+}
