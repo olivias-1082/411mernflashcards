@@ -1,13 +1,11 @@
 .flipcard {
     position: relative;
     width: 320px;
-    height: 200px;
+    height: 130px;
     perspective: 500px;
+    float: left;
+    margin-left: 20px;
     
-    align-content: center;
-    vertical-align: middle;
-    align-items: center;
-    vertical-align: middle;
 
 align-self: center;
   }
@@ -86,12 +84,13 @@ vertical-align: middle;
   .margin{
     align-items: center;
     align-self: center;
+    
 
     align-content: center;
     position: relative;
     vertical-align: middle;
     margin: 2%;
-    margin-left: 42%;
+    margin-left: 29%;
 
   }
   .containers{
