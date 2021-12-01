@@ -1,4 +1,3 @@
-// We import bootstrap to make our application look better.
 import "bootstrap/dist/css/bootstrap.css";
  import './navbar.css'; 
  import React, { useContext } from 'react';
@@ -21,6 +20,7 @@ const Navbar = props => {
         <div class="container">
         <nav>
           <ul>
+            
             <li><a href="/">Home</a></li>
             {auth.isLoggedIn && (
                <li><a href="/create">Add Translation</a></li>
@@ -50,4 +50,4 @@ const Navbar = props => {
   );
 };
  
-export default Navbar;
+export default (Navbar);

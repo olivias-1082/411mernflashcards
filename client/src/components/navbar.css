@@ -23,6 +23,8 @@ header::after {
 
 nav {
     float: right;
+    margin-right: -100px;
+    margin-left: -350px;
 }
 
 nav ul {
@@ -44,6 +46,13 @@ nav a {
     text-decoration: none;
     text-transform: uppercase;
     font-size: 17px;
+}
+
+nav b {
+    float: left;
+    font-size: 20px;
+    padding-top: -50px;
+    margin-left: -580px;
 }
 
 nav a:hover {

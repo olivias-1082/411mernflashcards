@@ -48,10 +48,17 @@ align-items: center;
 }
 .word_translation{
   font-size: 70px;
+<<<<<<< HEAD
 }
 .word{
   font-size: 70px;
 }
+=======
+}
+.word{
+  font-size: 70px;
+}
+>>>>>>> 6b747484bf1b9a927e14a33d2d5890d4b0269c55
 .card .back {
   background-color: #d8d8d8;
   font-size: 35px;
@@ -64,4 +71,8 @@ align-items: center;
   background-color: rgb(179, 179, 179);
   color:#340df3;
   font-size: 35px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6b747484bf1b9a927e14a33d2d5890d4b0269c55

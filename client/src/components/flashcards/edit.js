@@ -2,28 +2,30 @@ import React, { Component } from "react";
 import axios from 'axios';
 import { withRouter } from "react-router";
 import './edit.css'
+
 import Record from '../recordList'
 class UpdateFlashcard extends Component {
   constructor(props) {
     super(props);
-    
     this.onChangeWord = this.onChangeWord.bind(this);
     this.onChangeWordTranslation = this.onChangeWordTranslation.bind(this);
    this.onSubmit = this.onSubmit.bind(this);
- 
     this.state = {
+      id : this.props.match.params.id,
       word: "",
       word_translation: "",
       records: [],
     };
   }
   componentDidMount() {
-    axios
-      .get("http://localhost:5000/record/" + this.props.match.params.id)
-      .then((response) => {
+
+     axios
+      .get("http://localhost:5000/record/" + this.state.id)
+      .then((record) => {
         this.setState({
-          word: response.data.word,
-          word_translation: response.data.word_translation,
+          id : record.state.id,
+          word: record.data.word,
+          word_translation: record.data.word_translation,
         });
       })
       .catch(function (error) {
@@ -58,7 +60,7 @@ class UpdateFlashcard extends Component {
       )
       .then((res) => console.log(res.data));
  
-    this.props.history.push("/");
+    this.props.history.push("/translations");
   }
  
   render() {
