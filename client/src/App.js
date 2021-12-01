@@ -12,6 +12,7 @@ import Flashcards from './components/flashcards/flashcards';
 import RecordList from "./components/recordList";
 import HomePage from "./components/homepage"
 import Quiz from "./components/quiz"
+import RecordListFull from "./components/recordListFull";
 
 function App ()  {
   return (
@@ -24,7 +25,9 @@ function App ()  {
       <RecordList/>
       </Route>
       <Route path="/edit/:id" component={UpdateFlashcard} />
-
+      <Route path="/usertranslations"> 
+      <RecordListFull/>
+      </Route>
       <Route path="/flashcards">
       <Flashcards/>
 </Route>

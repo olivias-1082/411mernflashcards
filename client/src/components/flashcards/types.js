@@ -1,9 +1,0 @@
-export const GETCARDS = 'GETCARDS'
-export const ADDCARD = 'ADDCARD'
-export const DELETECARD = 'DELETECARD'
-export const EDITCARD = 'EDITCARD'
-export const GETCARD = 'GETCARD'
-export const CARDERROR = 'CARDERROR'
-export const SET_CURRENT = 'SET_CURRENT'
-export const CLEAR_CURRENT = 'CLEAR_CURRENT'
-export const CLEAR_ERRORS = 'CLEAR_ERRORS';

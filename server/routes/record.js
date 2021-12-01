@@ -27,12 +27,8 @@ recordRoutes.route("/record/:id").get(function (req, res) {
   db_connect
       .collection("records")
       .findOne(myquery, function (err, result) {
-
         if (err) throw err;
-        res.json(result)
-      
-       
-        
+        res.json(result);
       });
 });
 
