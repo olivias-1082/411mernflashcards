@@ -30,13 +30,7 @@ export default class RecordList extends Component {
       });
   }
  
-  // This method will delete a record based on the method
-  deleteTranslation(id) {
-    axios.delete("http://localhost:5000/record/delete/" + id).then((response) => {
-      console.log(response.data);
-    });
- 
-  }
+
  
   // This method will map out the users on the table
   recordList() {
@@ -44,9 +38,7 @@ export default class RecordList extends Component {
       return (
         <Record
           record={currentrecord}
-          key={currentrecord._id}
-        />
-        
+          key={currentrecord._id}/>
       );
     });
   }
