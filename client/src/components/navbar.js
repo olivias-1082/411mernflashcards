@@ -23,7 +23,7 @@ const Navbar = props => {
           <ul>
           <img src="PicsArt_12-01-05.17.16.png"></img>
             <li><a href="/">Home</a></li>
-=               <li><a href="/create">Add Translation</a></li>
+               <li><a href="/create">Add Translation</a></li>
             
                <li><a href="/flashcards">Flashcards</a></li>
             <li><a href="/quiz">Quiz</a></li>
