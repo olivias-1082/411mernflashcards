@@ -23,7 +23,7 @@ const Navbar = props => {
           <ul>
             <p1>CampSpan'</p1>
             <li><a href="/">Home</a></li>
-=               <li><a href="/create">Add Translation</a></li>
+               <li><a href="/create">Add Translation</a></li>
             
                <li><a href="/flashcards">Flashcards</a></li>
             <li><a href="/quiz">Quiz</a></li>
