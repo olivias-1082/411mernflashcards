@@ -19,8 +19,9 @@ const Navbar = props => {
       <header>
         <div class="container">
         <nav>
+          
           <ul>
-            
+          <img src="PicsArt_12-01-05.17.16.png"></img>
             <li><a href="/">Home</a></li>
             {auth.isLoggedIn && (
                <li><a href="/create">Add Translation</a></li>
