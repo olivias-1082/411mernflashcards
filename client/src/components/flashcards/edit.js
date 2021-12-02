@@ -20,10 +20,10 @@ class UpdateFlashcard extends Component {
   componentDidMount() {
 
      axios
-      .get("http://localhost:5000/record/" + this.state.id)
-      .then((record) => {
+      .get("http://localhost:5000/record/" + this.props.match._id)
+      .then(record => {
         this.setState({
-          id : record.state.id,
+          id : record.data.id,
           word: record.data.word,
           word_translation: record.data.word_translation,
         });

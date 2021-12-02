@@ -23,25 +23,18 @@ const Navbar = props => {
           <ul>
             <p1>CampSpan'</p1>
             <li><a href="/">Home</a></li>
-            {auth.isLoggedIn && (
-               <li><a href="/create">Add Translation</a></li>
-               )}
+=               <li><a href="/create">Add Translation</a></li>
+            
                <li><a href="/flashcards">Flashcards</a></li>
             <li><a href="/quiz">Quiz</a></li>
             <li><a href="/translations">All Translations</a></li>
-            {auth.isLoggedIn && (
-            <li><a href="/usertranslations"> Translations</a></li>
-            )}
-                {!auth.isLoggedIn && (
-      <li>
-        <a href="/auth">Login/Register</a>
-      </li>
-    )}
-       {auth.isLoggedIn && (
+
+
+      {auth.isLoggedIn && (
       <li>
         <button onClick={onLgout}>Logout</button>
       </li>
-    )}
+       ) }
             </ul>
         </nav>
         </div>

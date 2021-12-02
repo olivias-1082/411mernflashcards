@@ -33,16 +33,11 @@ class App extends React.Component {
         <HomePage/>
       </Route>
 
-      <Route path="/usertranslations"> 
-        <RecordListFull/>
-      </Route>
+
   
-      <Route path="/translations"> 
-        <RecordList/>
-      </Route>
 
       <Route path="/edit/:id" component={UpdateFlashcard} />
-      <Route path="/usertranslations"> 
+      <Route path="/translations"> 
       <RecordListFull/>
       </Route>
       <Route path="/flashcards">

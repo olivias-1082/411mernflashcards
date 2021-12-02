@@ -9,11 +9,14 @@ const Record = (props) => (
     <td>{props.record.word_translation}</td>
     <td>
       <Link to={"/edit/" + props.record._id}>Edit</Link> |
+
       <a
-        href="/translationss"
+        href="/"
         onClick={() => {
-          props.deleteTranslation(props.record._id);
-        }}
+          axios.delete("http://localhost:5000/record/delete/"+props.key).then((response) => {
+            console.log(response.data);
+          });       
+         }}
       >
         Delete
       </a>
@@ -21,7 +24,7 @@ const Record = (props) => (
   </tr>
 );
  
-export default class RecordListFull extends Component {
+export default class RecordList extends Component {
   // This is the constructor that shall store our data retrieved from the database
   constructor(props) {
     super(props);
@@ -40,22 +43,17 @@ export default class RecordListFull extends Component {
       });
   }
  
-  // This method will delete a record based on the method
-  deleteTranslation(id) {
-    axios.delete("http://localhost:5000/record/delete/" + id).then((response) => {
-      console.log(response.data);
-    });
- 
-  }
+
  
   // This method will map out the users on the table
-  recordListFull() {
+  recordList() {
     return this.state.records.map((currentrecord) => {
       return (
         <Record
           record={currentrecord}
           key={currentrecord._id}
         />
+        
       );
     });
   }
@@ -73,10 +71,9 @@ export default class RecordListFull extends Component {
             <tr>
               <th>English Word</th>
               <th>Spanish Translation</th>
-              <th>Action</th>
             </tr>
           </thead>
-          <tbody>{this.recordListFull()}</tbody>
+          <tbody>{this.recordList()}</tbody>
         </table>
         </div>
       </div>
