@@ -5,7 +5,12 @@ body {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size: 15px;
 }
-
+p1 {
+    font-family: fantasy;
+    color: skyblue;
+    font-size: 48px;
+    padding: 100px;
+}
 
 .container {
     width: 80%;
