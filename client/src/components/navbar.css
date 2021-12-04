@@ -3,12 +3,12 @@ body {
     background: white;
     color: rgb(0, 0, 0);
     font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 15px;
+    font-size: 25px;
 }
 p1 {
-    font-family: fantasy;
+    font-family: 'Pacifico', cursive;
     color: skyblue;
-    font-size: 48px;
+    font-size: 68px;
     padding: 100px;
 }
 
@@ -51,7 +51,7 @@ nav a {
     color: white;
     text-decoration: none;
     text-transform: uppercase;
-    font-size: 17px;
+    font-size: 20px;
 }
 
 nav b {

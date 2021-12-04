@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
  import { AuthContext } from './context/auth-context'
  import { useHistory} from 'react-router-dom';
+ import './logo.jpg'
 // Here, we display our Navbar
 const Navbar = props => {
   const history = useHistory();
@@ -15,13 +16,19 @@ const Navbar = props => {
 
   }
   return (
-    <body>
+    <div>
+      <head>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"></link>
+
+</head>
+<body>
+
       <header>
         <div class="container">
         <nav>
-          
           <ul>
             <p1>CampSpan'</p1>
+            
             <li><a href="/">Home</a></li>
                <li><a href="/create">Add Translation</a></li>
             
@@ -40,7 +47,7 @@ const Navbar = props => {
         </div>
       </header>
     </body>
-    
+    </div>
   );
 };
  

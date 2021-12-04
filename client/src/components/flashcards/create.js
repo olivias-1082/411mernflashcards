@@ -16,16 +16,16 @@ const AddCard = props =>{
       .then(res=>{
           res.data.errors?
           setErrors(res.data.errors)
-          :
+          : 
           props.refresh();
-          this.props.history.push("/translations");
 
           setWord("");
           setWordTranslation("");
-
         })
-      .catch (err=>console.log(err.data))
-  }
+        setTimeout(function(){window.location.reload();},10);
+        alert('Your translation has been sucessfully added');
+
+      }
   return(
     <div class="w3-container">
 

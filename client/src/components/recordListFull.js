@@ -15,7 +15,9 @@ const Record = (props) => (
         onClick={() => {
           axios.delete("http://localhost:5000/record/delete/"+props.key).then((response) => {
             console.log(response.data);
-          });       
+          });   
+          setTimeout(function(){window.location.reload();},10);
+    
          }}
       >
         Delete
