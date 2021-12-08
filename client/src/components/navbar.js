@@ -5,6 +5,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from './context/auth-context'
 import { useHistory } from 'react-router-dom';
 import './logo.jpg'
+import LoginPage from "../components/loginpage";
 
 // Here, we display our Navbar
 const Navbar = props => {
@@ -35,13 +36,10 @@ const Navbar = props => {
                 <li><a href="/flashcards">Flashcards</a></li>
                 <li><a href="/quiz">Quiz</a></li>
                 <li><a href="/translations">All Translations</a></li>
-                <li><a href="/login">Login</a></li>
-
-                {auth.isLoggedIn && (
-                  <li>
-                    <button onClick={onLgout}>Logout</button>
-                  </li>
-                )}
+                { LoginPage.isLoggedIn 
+                  ? <li><a href="/loggedin">Profile</a></li>
+                  : <li><a href="/login">Login</a></li>
+                }     
               </ul>
             </nav>
           </div>

@@ -13,7 +13,8 @@ class LoginPage extends React.Component {
             password: '',
             submitted: false,
             loading: false,
-            error: ''
+            error: '',
+            isLoggedIn: false
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -23,6 +24,7 @@ class LoginPage extends React.Component {
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
+        const isLoggedIn = true;
     }
 
     handleSubmit(e) {
@@ -40,7 +42,8 @@ class LoginPage extends React.Component {
         userService.login(username, password)
             .then(
                 user => {
-                    window.location = '/loggedIn';
+                    window.location = '/';
+                    alert('You have successfully logged in');
                 },
                 error => this.setState({ error, loading: false })
             );

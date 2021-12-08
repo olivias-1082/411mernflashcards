@@ -13,6 +13,7 @@ import Quiz from "./components/quiz";
 import RecordListFull from "./components/recordListFull";
 import LoginPage from "./components/loginpage";
 import LoggedInPage from "./components/loggedIn";
+import PrivateRoute from "./components/PrivateRoute";
 
 class App extends React.Component {
 
@@ -22,19 +23,20 @@ class App extends React.Component {
         <div>
 
           <Navbar />
+
           <Route exact path="/">
             <HomePage />
           </Route>
 
           <Route path="/edit/:id" component={UpdateFlashcard} />
-          <Route path="/translations">
-            <RecordListFull />
-          </Route>
+
+          <PrivateRoute path="/translations" component={RecordListFull} />
+
           <Route path="/flashcards">
             <Flashcards />
           </Route>
 
-          <Route path="/create" component={AddFlashcard} />
+          <PrivateRoute path="/create" component={AddFlashcard} />
 
           <Route path="/quiz">
             <Quiz />
