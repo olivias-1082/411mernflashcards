@@ -38,7 +38,7 @@ const Navbar = props => {
                 <li><a href="/translations">All Translations</a></li>
                 { LoginPage.isLoggedIn 
                   ? <li><a href="/loggedin">Profile</a></li>
-                  : <li><a href="/login">Login</a></li>
+                  : <li><a href="/loggedIn">Profile</a></li>
                 }     
               </ul>
             </nav>

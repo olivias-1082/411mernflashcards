@@ -42,7 +42,7 @@ class LoginPage extends React.Component {
         userService.login(username, password)
             .then(
                 user => {
-                    window.location = '/';
+                    window.location = '/loggedIn';
                     alert('You have successfully logged in');
                 },
                 error => this.setState({ error, loading: false })

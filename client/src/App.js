@@ -46,9 +46,7 @@ class App extends React.Component {
             <LoginPage />
           </Route>
 
-          <Route path="/loggedin">
-            <LoggedInPage />
-          </Route>
+          <PrivateRoute path="/loggedIn" component={LoggedInPage} />
 
         </div>
       </Router>
