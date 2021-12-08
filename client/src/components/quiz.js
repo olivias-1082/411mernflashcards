@@ -71,6 +71,30 @@ export default function Quiz() {
 				{ answerText: 'gracias', isCorrect: false },
 			],
 		},
+		{
+			questionText: 'What is the spanish translation of the phrase of the day, Hola, como estas?',
+			answerOptions: [
+				{ answerText: 'What is your favorite food?', isCorrect: false },
+				{ answerText: 'Hello, how are you', isCorrect: true },
+				{ answerText: 'What is your favorite color?', isCorrect: false },
+			],
+		},
+		{
+			questionText: 'What is the spanish translation of the phrase of the day, Estás listo para estudiar?',
+			answerOptions: [
+				{ answerText: 'Are you ready to study?', isCorrect: true },
+				{ answerText: 'What is your favorite color?', isCorrect: false },
+				{ answerText:  'Hello, how are you', isCorrect: false },
+			],
+		},
+		{
+			questionText: 'What is the spanish translation of the phrase of the day, Cuál es tu color preferido?',
+			answerOptions: [
+				{ answerText: 'What color is preferred?', isCorrect: false },
+				{ answerText: 'Are you ready to study?', isCorrect: true },
+				{ answerText: 'What is your favorite color?', isCorrect: true },
+			],
+		},
 	];
 
 	const handleAnswerOptionClick = (isCorrect) => {

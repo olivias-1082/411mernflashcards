@@ -14,6 +14,8 @@ import RecordListFull from "./components/recordListFull";
 import LoginPage from "./components/loginpage";
 import LoggedInPage from "./components/loggedIn";
 import PrivateRoute from "./components/PrivateRoute";
+import RecordList from "./components/recordList";
+import Register from "./components/register";
 
 class App extends React.Component {
 
@@ -30,14 +32,17 @@ class App extends React.Component {
 
           <Route path="/edit/:id" component={UpdateFlashcard} />
 
-          <PrivateRoute path="/translations" component={RecordListFull} />
+          <Route  path="/translations">
+            <RecordList />
+          </Route>
+          <PrivateRoute path="/usertranslations" component={RecordListFull} />
 
           <Route path="/flashcards">
             <Flashcards />
           </Route>
 
           <PrivateRoute path="/create" component={AddFlashcard} />
-
+          <PrivateRoute path="/signup" component={Register} />
           <Route path="/quiz">
             <Quiz />
           </Route>
