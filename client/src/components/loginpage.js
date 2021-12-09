@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 import { userService } from './userService';
-
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
@@ -53,9 +52,11 @@ class LoginPage extends React.Component {
     render() {
         const { username, password, submitted, loading, error } = this.state;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h2>Login</h2>
-                <form name="form" onSubmit={this.handleSubmit}>
+            <div class="w3-container">
+
+          <div className="col-md-6 col-md-offset-3">
+                <h2 align="center">Login</h2>
+                <form name="form" onSubmit={this.handleSubmit} autocomplete="off">
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>
                         <input type="text" className="form-control" name="username" value={username} onChange={this.handleChange} />
@@ -80,6 +81,7 @@ class LoginPage extends React.Component {
                         <div className={'alert alert-danger'}>{error}</div>
                     }
                 </form>
+            </div>
             </div>
         );
     }

@@ -31,7 +31,7 @@ const AddCard = props => {
 
       <div style={{ marginTop: 20 }}>
         <h3 align="center"> Create a Translation</h3>
-        <form onSubmit={e => addCard(e)}>
+        <form onSubmit={e => addCard(e)} autocomplete="off">
           <label htmlFor="words">Word:</label>
           <input name="word"
             style={{ width: "100%" }}

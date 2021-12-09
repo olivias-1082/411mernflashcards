@@ -69,7 +69,7 @@ class UpdateFlashcard extends Component {
 
         <div>
           <h3 align="center">Update Translation</h3>
-          <form onSubmit={this.onSubmit}>
+          <form onSubmit={this.onSubmit} autocomplete="off">
             <div className="form-group">
               <label>Word: </label>
               <input
