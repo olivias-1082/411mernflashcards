@@ -35,21 +35,12 @@ const Navbar = props => {
                 <li><a href="/flashcards">Flashcards</a></li>
                 <li><a href="/quiz">Quiz</a></li>
               
-                { LoginPage.isLoggedIn 
-                ? <li><a href="/create">Add Translation</a></li>
+               
                   : <li><a href="/translations">All Translations</a></li>
-                 }  
-                   { LoginPage.isLoggedIn 
-                  ? <li><a href="/usertranslations">All Translations</a></li>
-                  : <li><a href="/login">Login</a></li>                }    
-                    { LoginPage.isLoggedIn 
-                  ? <li><a href="/loggedin">Profile</a></li>
-                  : <li></li>
-                }     
-                 { LoginPage.isLoggedIn 
-                  ? <li><a href="/signup">Register a User</a></li>
-                  : <li></li>
-                }     
+                  
+                  <li><a href="/loggedIn">Login</a></li>                
+                  
+        
               </ul>
             </nav>
           </div>
