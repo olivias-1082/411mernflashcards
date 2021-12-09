@@ -34,11 +34,9 @@ const Navbar = props => {
                 <li><a href="/">Home</a></li>
                 <li><a href="/flashcards">Flashcards</a></li>
                 <li><a href="/quiz">Quiz</a></li>
-              
-               
-                  : <li><a href="/translations">All Translations</a></li>
+                <li><a href="/translations">All Translations</a></li>
                   
-                  <li><a href="/loggedIn">Login</a></li>                
+                <li><a href="/loggedIn">Login</a></li>                
                   
         
               </ul>

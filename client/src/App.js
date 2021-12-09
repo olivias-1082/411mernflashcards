@@ -43,6 +43,7 @@ class App extends React.Component {
 
           <PrivateRoute path="/create" component={AddFlashcard} />
           <PrivateRoute path="/signup" component={Register} />
+          
           <Route path="/quiz">
             <Quiz />
           </Route>
